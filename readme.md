@@ -80,26 +80,24 @@ debug         | bool     | false           | console.debug items
 
 ```
 
-## Usage (example)
+## Example
 
 ```
 import ContentMacros from "ContentMacros";
+// const ContentMacros = require("content-macros");
 
-let config = {
+let options = {
     values: {
-        one: 1,
-    }
+        greeting: "Hello",
+    },
     functions: {
-        hello(...args) { return args.join(`Hello ${args.join(" ")`)}
+        say(...args) { 
+            return `${args.join(" ")}!`
+        }
     }
 };
+let contentMacros = new ContentMacros(options);
 
-console.log()
-bumpTimeout("test",() => handler("first"),1000);
-bumpTimeout("test",() => handler("second"),500);
-bumpTimeout("test",() => handler("third"),10);
-
-// only one line of output
-//  Value is "third"
-
+console.log(contentMacros.expand("{{say,{{greeting}},world}}"));
+// "Hello world!"
 ```

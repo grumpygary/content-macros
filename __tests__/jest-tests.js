@@ -1,6 +1,6 @@
 const ContentMacros = require("../src/content-macros");
 
-const macroConfig = {
+const macroOptions = {
     error: true,
     warn: true,
     log: false,
@@ -26,7 +26,7 @@ const macroConfig = {
         },
     }
 };
-let contentMacros = new ContentMacros(macroConfig);
+let contentMacros = new ContentMacros(macroOptions);
 
 describe("ContentMacros", () => {
     // let books, movies, quotes, bookId, movieId, quoteId;
