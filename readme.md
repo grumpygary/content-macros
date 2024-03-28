@@ -1,4 +1,4 @@
-# grel-macros
+# content-macros
 
 Powerful content text macros.
 
@@ -7,55 +7,55 @@ Powerful content text macros.
 ### NPM
 
 ```sh
-npm install "grel-macros"
+npm install "content-macros"
 ```
 
 ### GitHub
 
 ```sh
-git clone "https://github.com/grumpygary/grel-macros"
+git clone "https://github.com/grumpygary/content-macros"
 ```
 
 ## Use Case
 
 While javascript template strings are wonderful in most cases,
 they're not well suited for content string macros.
-grel-macros provides a way to implement and control
+content-macros provides a way to implement and control
 content string macros with: string-replacement, nested macros
 (use macros to build macros), function sets, etc.
 
 ## Syntax
 
 ```
-import GrelMacros from "grel-macros";
+import ContentMacros from "content-macros";
 
-grelMacros.expand(stringToExpend,options);
+ContentMacros.expand(stringToExpend,options);
 // or
-grelMacros.expand(options);
+ContentMacros.expand(options);
 ```
 
 ## Macro Syntax
 
-Macros begin with {{ and end with }}.  They may be nested to create interesting results.
+Macros begin with {{ and end with }} (customizable).
+They may be nested to create interesting results.
 Macros objects may have a state, which can be overridden when expanded.
 
 There are 2 types of macros, depending on parameters passed to .expand():
-- stateless: (default) If not state is active, options.functions are called without a state.
-Also, if the first character is "=" or "." it is ignored.
+
+- stateless: (default) if not state is active (during instantiation or overridden), options.functions are called without a state.  If the first character is "=" or "." it is ignored.
+
 - stateful: If state is active, the first argument to each function is the state:
     -- if the first character is "=", a value result is returned (defaults to options.empty)
     -- if the first character is ".", "" is returned
 
+### Macro syntax examples
 ```
-{{key,...args}}
-{{=key,...args}} 
-{{.key,...args}}
-name               | state    | default         | description
--------------------|----------|-----------------|-------------------------------------------------
-{{=name}}          | object   |                 | common key for the timeout.  required
-separator     | string   | ","             | argument separator in macro function calls
-               // returns EITHER config.functions[name], or config.values[name]
-    {{name}}            // returns EITHER config.functions[name], or config.values[name]
+{{key,...args}}     // assumes no active state
+{{=key,...args}}    // returns a value (whether stateless or stateful)
+{{.key,...args}}    // no value if stateful, returns result otherwise
+
+
+*See __tests__/jest-tests.js in repo for examples.*
 ```
 
 ## Options
@@ -83,14 +83,18 @@ debug         | bool     | false           | console.debug items
 ## Usage (example)
 
 ```
-import { 
-    bumpTimeout, timeout, listActiveBumpTimeouts
-} from "bump-timeout";
+import ContentMacros from "ContentMacros";
 
-const handler = async (val) => {
-    console.log(`Value is "${val}"`)
-}
+let config = {
+    values: {
+        one: 1,
+    }
+    functions: {
+        hello(...args) { return args.join(`Hello ${args.join(" ")`)}
+    }
+};
 
+console.log()
 bumpTimeout("test",() => handler("first"),1000);
 bumpTimeout("test",() => handler("second"),500);
 bumpTimeout("test",() => handler("third"),10);

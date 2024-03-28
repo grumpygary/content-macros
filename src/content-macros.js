@@ -16,7 +16,7 @@ const getValue = (input,values = {}) => {
     return value;
 };
 
-class GrelMacros {
+class ContentMacros {
     constructor(config = {}) {
         if (config.values) {
             this.values = config.values;
@@ -248,4 +248,4 @@ class GrelMacros {
     }
 }
 
-module.exports = GrelMacros;
+module.exports = ContentMacros;

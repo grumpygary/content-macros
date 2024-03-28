@@ -1,14 +1,14 @@
 {
   "name": "content-macros",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Dynamic, customizable macros for your content.",
   "main": "src/content-macros.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [
-    "timeout",
-    "shared"
+    "macros",
+    "content"
   ],
   "author": "Gary Skiba",
   "license": "MIT",
