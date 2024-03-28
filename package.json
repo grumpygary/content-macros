@@ -1,0 +1,19 @@
+{
+  "name": "content-macros",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/content-macros.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "timeout",
+    "shared"
+  ],
+  "author": "Gary Skiba",
+  "license": "MIT",
+  "repository": "github:grumpygary/content-macros",
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
